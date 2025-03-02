@@ -1,0 +1,50 @@
+Public URLS
+
+https://hub.docker.com/r/kanjali/service1-image
+https://hub.docker.com/r/kanjali/service2-image
+https://hub.docker.com/r/kanjali/haproxy-image
+
+Direction 
+1. Install and Signup on docker hub
+2. Install python and flask
+3. Create Service1 inside this directory create file  app.py and Dockerfile
+4. same as bove create service2
+5. To create image
+        1. Open a terminal and navigate to the service1 directory.
+        2. Run : docker build -t service1-image .
+   do same for service 2 image
+6. Run the following command to create docker container
+     Start the first service: 
+     docker run -d -p 5001:5000 --name service1-container service1-image
+     Start the second service
+     docker run -d -p 5002:5000 --name service2-container service2-image
+7. To test the service visit : http://localhost:5001/
+    http://localhost:5002/
+    you should be getting message written in your app--
+    Hello, this is 21JE0495 from Service1!
+8. In a new directory ( haproxy), create a file named haproxy.cfg and file     Dockerfile
+9. Navigate to the haproxy directory and build the image by running command :
+    docker build -t haproxy-image .
+10. Run haproxy container :
+ docker run -d -p 80:80 --name haproxy-container haproxy-image
+11. now login into your docker hub run the command : docker login
+12. Tag each image with your useraname and a repository name use the comand 
+    docker tag service1-image yourusername/service1-image
+    docker tag service2-image yourusername/service2-image
+    docker tag haproxy-image yourusername/haproxy-image
+13. now upload tagged image to docker hub
+    docker push yourusername/service1-image
+    docker push yourusername/service2-image
+    docker push yourusername/haproxy-image
+14. now everything is done visit : http://localhost/
+   and refresh the page 4-5 times the resopnse should be alternate 
+   Hello, this is 21JE0495 from Service1!
+   and 
+   Hello, this is 21JE0495 from Service2!
+
+
+
+   
+
+
+
